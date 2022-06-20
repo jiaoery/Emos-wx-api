@@ -1,4 +1,4 @@
-package com.jiaoery.emoswxapi;
+package com.jiaoery.emos.wx;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

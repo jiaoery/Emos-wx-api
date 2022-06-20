@@ -40,3 +40,35 @@ spring:
         max-wait: -1ms
         max-idle: 16
         min-idle: 8
+
+# MongoDB 数据源
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: emos
+      authentication-database: admin
+      username: admin
+      password: abc123456
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+# Mybatis
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.jiaoery.emos.wx.db.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+ #log日志
+logging:
+  level:
+    root: info
+    com.jiaoery.emos.wx.db.dao : warn
+  pattern:
+    console: "%d{HH:mm:ss}  %-5level  %msg%n"
+
+

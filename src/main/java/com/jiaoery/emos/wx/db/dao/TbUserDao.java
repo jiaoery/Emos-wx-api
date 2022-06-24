@@ -5,15 +5,11 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface TbUserDao {
-    int deleteByPrimaryKey(Integer id);
 
     int insert(TbUser record);
 
-    int insertSelective(TbUser record);
+     boolean haveRootUser();
 
-    TbUser selectByPrimaryKey(Integer id);
+    Integer searchIdByOpenId(String openId);
 
-    int updateByPrimaryKeySelective(TbUser record);
-
-    int updateByPrimaryKey(TbUser record);
 }

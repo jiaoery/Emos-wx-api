@@ -4,7 +4,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * sys_config
+ * tb_permission
  * @author 
  */
 @Data
@@ -15,24 +15,19 @@ public class TbPermission implements Serializable {
     private Integer id;
 
     /**
-     * 参数名
+     * 权限
      */
-    private String paramKey;
+    private String permissionName;
 
     /**
-     * 参数值
+     * 模块ID
      */
-    private String paramValue;
+    private Integer moduleId;
 
     /**
-     * 状态
+     * 行为ID
      */
-    private Byte status;
-
-    /**
-     * 备注
-     */
-    private String remark;
+    private Integer actionId;
 
     private static final long serialVersionUID = 1L;
 }

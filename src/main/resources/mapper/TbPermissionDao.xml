@@ -3,85 +3,74 @@
 <mapper namespace="com.jiaoery.emos.wx.db.dao.TbPermissionDao">
   <resultMap id="BaseResultMap" type="com.jiaoery.emos.wx.db.pojo.TbPermission">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="param_key" jdbcType="VARCHAR" property="paramKey" />
-    <result column="param_value" jdbcType="VARCHAR" property="paramValue" />
-    <result column="status" jdbcType="TINYINT" property="status" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
+    <result column="module_id" jdbcType="INTEGER" property="moduleId" />
+    <result column="action_id" jdbcType="INTEGER" property="actionId" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, param_key, param_value, `status`, remark
+    id, permission_name, module_id, action_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_config
+    from tb_permission
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from sys_config
+    delete from tb_permission
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.jiaoery.emos.wx.db.pojo.TbPermission" useGeneratedKeys="true">
-    insert into sys_config (param_key, param_value, `status`, 
-      remark)
-    values (#{paramKey,jdbcType=VARCHAR}, #{paramValue,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
-      #{remark,jdbcType=VARCHAR})
+    insert into tb_permission (permission_name, module_id, action_id
+      )
+    values (#{permissionName,jdbcType=VARCHAR}, #{moduleId,jdbcType=INTEGER}, #{actionId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.jiaoery.emos.wx.db.pojo.TbPermission" useGeneratedKeys="true">
-    insert into sys_config
+    insert into tb_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="paramKey != null">
-        param_key,
+      <if test="permissionName != null">
+        permission_name,
       </if>
-      <if test="paramValue != null">
-        param_value,
+      <if test="moduleId != null">
+        module_id,
       </if>
-      <if test="status != null">
-        `status`,
-      </if>
-      <if test="remark != null">
-        remark,
+      <if test="actionId != null">
+        action_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="paramKey != null">
-        #{paramKey,jdbcType=VARCHAR},
+      <if test="permissionName != null">
+        #{permissionName,jdbcType=VARCHAR},
       </if>
-      <if test="paramValue != null">
-        #{paramValue,jdbcType=VARCHAR},
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
       </if>
-      <if test="status != null">
-        #{status,jdbcType=TINYINT},
-      </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
+      <if test="actionId != null">
+        #{actionId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.jiaoery.emos.wx.db.pojo.TbPermission">
-    update sys_config
+    update tb_permission
     <set>
-      <if test="paramKey != null">
-        param_key = #{paramKey,jdbcType=VARCHAR},
+      <if test="permissionName != null">
+        permission_name = #{permissionName,jdbcType=VARCHAR},
       </if>
-      <if test="paramValue != null">
-        param_value = #{paramValue,jdbcType=VARCHAR},
+      <if test="moduleId != null">
+        module_id = #{moduleId,jdbcType=INTEGER},
       </if>
-      <if test="status != null">
-        `status` = #{status,jdbcType=TINYINT},
-      </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=VARCHAR},
+      <if test="actionId != null">
+        action_id = #{actionId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jiaoery.emos.wx.db.pojo.TbPermission">
-    update sys_config
-    set param_key = #{paramKey,jdbcType=VARCHAR},
-      param_value = #{paramValue,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=TINYINT},
-      remark = #{remark,jdbcType=VARCHAR}
+    update tb_permission
+    set permission_name = #{permissionName,jdbcType=VARCHAR},
+      module_id = #{moduleId,jdbcType=INTEGER},
+      action_id = #{actionId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

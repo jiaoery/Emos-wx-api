@@ -1,5 +1,7 @@
 package com.jiaoery.emos.wx.service;
 
+import java.util.Set;
+
 /**
  * ClassName: UserService
  * Description:UserService
@@ -10,4 +12,6 @@ package com.jiaoery.emos.wx.service;
  */
 public interface UserService {
     public int registerUser(String registerCode,String code,String nickName,String photo);
+
+    public Set<String> searchUserPermissions(int userId);
 }

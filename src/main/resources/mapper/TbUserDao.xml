@@ -123,4 +123,12 @@
         </if>
 
   </select>
+
+  <select id="searchUserpermission" parameterType="java.lang.Integer" resultType="java.lang.String">
+    SELECT p.permission_name
+    FROM tb_user u
+    JOIN tb_role r ON JSON_CONTAINS(u.role,CAST(r.id AS CHAR))
+    JOIN tb_permission p ON JSON_CONTAINS(r.permissions,CAST(p.id AS CHAR))
+    WHERE u.id = #{userid} AND u.status =1;
+</select>
 </mapper>

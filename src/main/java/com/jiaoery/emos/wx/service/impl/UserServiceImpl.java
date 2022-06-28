@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.crypto.ExemptionMechanismException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * ClassName: UserServiceImpl
@@ -46,15 +47,15 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     private String getOpenId(String code){
-        String url = "https://api.weixin.qq.com/sns/jscode?session";
-        JSONObject jsonObject =new JSONObject();
-        jsonObject.put("appid",appId);
-        jsonObject.put("secret",appSecret);
-        jsonObject.put("js_code",code);
-        jsonObject.put("grant_type","authorization_code");
-        String response = HttpUtil.post(url, jsonObject.toJSONString());
+        String url = "https://api.weixin.qq.com/sns/jscode2session";
+        HashMap map = new HashMap();
+        map.put("appid", appId);
+        map.put("secret", appSecret);
+        map.put("js_code", code);
+        map.put("grant_type", "authorization_code");
+        String response = HttpUtil.post(url, map);
         JSONObject json = JSON.parseObject(response);
-        String openId = json.getString("openId");
+        String openId = json.getString("openid");
         if(StrUtil.isEmpty(openId)){
             throw new RuntimeException("临时登录凭证错误");
         }
@@ -91,5 +92,11 @@ public class UserServiceImpl implements UserService {
             return 0;
         }
 
+    }
+
+    @Override
+    public Set<String> searchUserPermissions(int userId) {
+        Set<String> permisssions = userDao.searchUserpermission(userId);
+        return permisssions;
     }
 }

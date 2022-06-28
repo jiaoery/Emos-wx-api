@@ -4,7 +4,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * sys_config
+ * tb_role
  * @author 
  */
 @Data
@@ -15,24 +15,14 @@ public class TbRole implements Serializable {
     private Integer id;
 
     /**
-     * 参数名
+     * 角色名称
      */
-    private String paramKey;
+    private String roleName;
 
     /**
-     * 参数值
+     * 权限集合
      */
-    private String paramValue;
-
-    /**
-     * 状态
-     */
-    private Byte status;
-
-    /**
-     * 备注
-     */
-    private String remark;
+    private Object permissions;
 
     private static final long serialVersionUID = 1L;
 }

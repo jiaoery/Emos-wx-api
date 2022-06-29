@@ -26,18 +26,18 @@ public class ExceptionAdvice {
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public R exceptionHandler(Exception e){
+    public String exceptionHandler(Exception e){
         log.error("执行异常",e);
         if(e instanceof MethodArgumentNotValidException){
             MethodArgumentNotValidException exception = (MethodArgumentNotValidException) e;
-            return R.error(exception.getBindingResult().getFieldError().getDefaultMessage());
+            return exception.getBindingResult().getFieldError().getDefaultMessage();
         }else if(e instanceof EmosException){
             EmosException exception = (EmosException) e;
-            return R.error(exception.getMsg());
+            return exception.getMsg();
         }else if(e instanceof UnauthenticatedException){
-            return R.error("你不具备相关权限");
+            return "你不具备相关权限";
         }else {
-            return R.error("后端执行异常");
+            return "后端执行异常";
         }
     }
 }

@@ -2,9 +2,11 @@ package com.jiaoery.emos.wx.controller;
 
 import com.jiaoery.emos.wx.common.util.R;
 import com.jiaoery.emos.wx.config.shiro.JwtUtil;
+import com.jiaoery.emos.wx.controller.form.LoginForm;
 import com.jiaoery.emos.wx.controller.form.RegisterForm;
 import com.jiaoery.emos.wx.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,10 +52,18 @@ public class UserController {
         String token = jwtUtil.createToken(id);
         Set<String> permissions = userService.searchUserPermissions(id);
         saveCacheToken(token,id);
-        return R.ok("用户注册成功").put("token",token).put("permissions",permissions);
+        return R.ok("用户注册成功").put("token",token).put("permission",permissions);
     }
 
-
+    @PostMapping("/login")
+    @ApiOperation("用户登录")
+    public R login(@Valid @RequestBody LoginForm loginForm){
+        int id  = userService.login(loginForm.getCode());
+        String token = jwtUtil.createToken(id);
+        saveCacheToken(token,id);
+        Set<String> permissions = userService.searchUserPermissions(id);
+        return R.ok("登录成功").put("token",token).put("permissions",permissions);
+    }
     private void saveCacheToken(String token,int userId){
         redisTemplate.opsForValue().set(token,userId+"",cacheExpire, TimeUnit.DAYS);
     }

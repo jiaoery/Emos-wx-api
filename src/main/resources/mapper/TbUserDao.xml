@@ -117,10 +117,7 @@
         id
     FROM
         tb_user
-    WHERE status=1
-        <if test="openId!=null">
-          AND open_id= #{openId,jdbcType=VARCHAR}
-        </if>
+    WHERE status=1 AND open_id= #{openId,jdbcType=VARCHAR}
 
   </select>
 

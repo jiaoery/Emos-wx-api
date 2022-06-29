@@ -1,6 +1,5 @@
 package com.jiaoery.emos.wx.config;
 
-import com.jiaoery.emos.wx.common.util.R;
 import com.jiaoery.emos.wx.exception.EmosException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.UnauthenticatedException;

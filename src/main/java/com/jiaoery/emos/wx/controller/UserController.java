@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController
 @RequestMapping("/user")
-@Api("用户模块web接口")
+@Api(tags = "用户模块web接口")
 public class UserController {
 
     @Autowired

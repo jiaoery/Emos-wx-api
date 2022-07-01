@@ -18,7 +18,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/test")
-@Api("测试Web接口")
+@Api(tags = "测试Web接口")
 public class TestController {
 
     @PostMapping("/sayHello")

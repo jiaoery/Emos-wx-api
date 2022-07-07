@@ -1,5 +1,7 @@
 package com.jiaoery.emos.wx.service;
 
+import com.jiaoery.emos.wx.db.pojo.TbUser;
+
 import java.util.Set;
 
 /**
@@ -16,4 +18,6 @@ public interface UserService {
     public Set<String> searchUserPermissions(int userId);
 
     public Integer login(String code);
+
+    public TbUser searchById(Integer userId);
 }

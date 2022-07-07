@@ -16,4 +16,6 @@ public interface TbUserDao {
 
     Set<String> searchUserpermission(int userid);
 
+    TbUser searchById(Integer userId);
+
 }

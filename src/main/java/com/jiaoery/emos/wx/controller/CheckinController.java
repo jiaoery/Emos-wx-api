@@ -35,7 +35,7 @@ public class CheckinController {
 
     @GetMapping("/validCanCheckIn")
     @ApiOperation("查看用户今天是否可以签到")
-    public R validCanCheckin(@RequestHeader("token") String token){
+    public R validCanCheckin(@RequestHeader("token")String token){
         int userId = jwtUtil.getUserId(token);
         String result = checkinService.validCanChecKin(userId, DateUtil.today());
         return R.ok(result);

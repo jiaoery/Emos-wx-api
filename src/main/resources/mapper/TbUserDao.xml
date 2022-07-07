@@ -128,4 +128,12 @@
     JOIN tb_permission p ON JSON_CONTAINS(r.permissions,CAST(p.id AS CHAR))
     WHERE u.id = #{userid} AND u.status =1;
 </select>
+
+  <select id="searchById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+        <include refid="Base_Column_List"/>
+        FROM tb_user
+        WHERE id = #{userId}
+        AND status = 1
+  </select>
 </mapper>

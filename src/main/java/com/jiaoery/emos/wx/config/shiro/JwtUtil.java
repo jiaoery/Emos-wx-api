@@ -51,7 +51,7 @@ public class JwtUtil {
 
     public void verifierToken(String token){
         //创建加密算法对象
-        Algorithm algorithm = Algorithm.HMAC256(token);
+        Algorithm algorithm = Algorithm.HMAC256(secret);
         JWTVerifier verifier = JWT.require(algorithm).build();
         verifier.verify(token);
     }

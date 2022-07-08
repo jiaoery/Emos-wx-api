@@ -10,6 +10,7 @@ import lombok.Data;
  */
 @Data
 public class TbCheckin implements Serializable {
+    private static final long serialVersionUID = 7414639187522004695L;
     /**
      * 主键
      */
@@ -64,6 +65,5 @@ public class TbCheckin implements Serializable {
      * 签到时间
      */
     private Date createTime;
-
-    private static final long serialVersionUID = 1L;
+    
 }

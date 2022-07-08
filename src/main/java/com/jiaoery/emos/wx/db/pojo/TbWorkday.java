@@ -10,6 +10,7 @@ import lombok.Data;
  */
 @Data
 public class TbWorkday implements Serializable {
+    private static final long serialVersionUID = -6280469808700588694L;
     /**
      * 主键
      */
@@ -19,6 +20,5 @@ public class TbWorkday implements Serializable {
      * 日期
      */
     private Date date;
-
-    private static final long serialVersionUID = 1L;
+    
 }

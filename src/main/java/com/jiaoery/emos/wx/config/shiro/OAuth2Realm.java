@@ -10,6 +10,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
+
 /**
  * ClassName:OAuth2Realm
  * Description:
@@ -39,9 +41,12 @@ public class OAuth2Realm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        TbUser user = (TbUser) principalCollection.getPrimaryPrincipal();
+        int userId = user.getId();
+        //用户权限列表
+        Set<String> permsSet = userService.searchUserPermissions(userId);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        //TODO 查询用户的权限列表
-        //TODO 把权限列表添加到info对象中
+        info.setStringPermissions(permsSet);
         return info;
     }
 
@@ -57,7 +62,6 @@ public class OAuth2Realm extends AuthorizingRealm {
             throw new LockedAccountException("账号已被锁定，请联系管理员");
         }
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user,accessToken,getName());
-        //TODO 往info对象中添加用户信息、Token字符串
         return info;
     }
 }

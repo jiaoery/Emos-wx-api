@@ -10,6 +10,7 @@ import lombok.Data;
  */
 @Data
 public class TbHolidays implements Serializable {
+    private static final long serialVersionUID = -4387811330830198141L;
     /**
      * 主键
      */
@@ -19,6 +20,5 @@ public class TbHolidays implements Serializable {
      * 日期
      */
     private Date date;
-
-    private static final long serialVersionUID = 1L;
+    
 }

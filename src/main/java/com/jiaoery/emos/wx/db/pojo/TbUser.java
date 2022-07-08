@@ -10,6 +10,7 @@ import lombok.Data;
  */
 @Data
 public class TbUser implements Serializable {
+    private static final long serialVersionUID = 2088835809031829231L;
     /**
      * 主键
      */
@@ -80,5 +81,4 @@ public class TbUser implements Serializable {
      */
     private Date createTime;
 
-    private static final long serialVersionUID = 1L;
 }

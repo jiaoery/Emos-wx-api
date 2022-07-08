@@ -9,6 +9,7 @@ import lombok.Data;
  */
 @Data
 public class TbRole implements Serializable {
+    private static final long serialVersionUID = -4541103189774880684L;
     /**
      * 主键
      */
@@ -23,6 +24,5 @@ public class TbRole implements Serializable {
      * 权限集合
      */
     private Object permissions;
-
-    private static final long serialVersionUID = 1L;
+    
 }

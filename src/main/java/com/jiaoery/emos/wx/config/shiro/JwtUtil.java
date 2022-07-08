@@ -43,7 +43,7 @@ public class JwtUtil {
     public int getUserId(String token){
         try {
             DecodedJWT jwt = JWT.decode(token);
-            return jwt.getClaim("userid").asInt();
+            return jwt.getClaim("userId").asInt();
         }catch (Exception exception){
             throw new EmosException("令牌无效");
         }

@@ -9,6 +9,7 @@ import lombok.Data;
  */
 @Data
 public class SysConfig implements Serializable {
+    private static final long serialVersionUID = 7213781226906443225L;
     /**
      * 主键
      */
@@ -33,6 +34,4 @@ public class SysConfig implements Serializable {
      * 备注
      */
     private String remark;
-
-    private static final long serialVersionUID = 1L;
 }

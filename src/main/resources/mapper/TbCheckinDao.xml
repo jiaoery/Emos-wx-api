@@ -5,36 +5,64 @@
 <mapper namespace="com.jiaoery.emos.wx.db.dao.TbCheckinDao">
 
     <resultMap id="BaseResultMap" type="com.jiaoery.emos.wx.db.pojo.TbCheckin">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="userId" column="user_id" jdbcType="INTEGER"/>
-            <result property="address" column="address" jdbcType="VARCHAR"/>
-            <result property="country" column="country" jdbcType="VARCHAR"/>
-            <result property="province" column="province" jdbcType="VARCHAR"/>
-            <result property="city" column="city" jdbcType="VARCHAR"/>
-            <result property="district" column="district" jdbcType="VARCHAR"/>
-            <result property="status" column="status" jdbcType="TINYINT"/>
-            <result property="risk" column="risk" jdbcType="INTEGER"/>
-            <result property="date" column="date" jdbcType="DATE"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="country" column="country" jdbcType="VARCHAR"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="district" column="district" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="TINYINT"/>
+        <result property="risk" column="risk" jdbcType="INTEGER"/>
+        <result property="date" column="date" jdbcType="DATE"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,user_id,address,
+        id
+        ,user_id,address,
         country,province,city,
         district,status,risk,
         date,create_time
     </sql>
 
     <select id="haveCheckin" parameterType="java.util.HashMap" resultType="java.lang.Integer">
-        SELECT
-            id
-        FROM
-            tb_checkin
+        SELECT id
+        FROM tb_checkin
         WHERE user_id = #{userId}
-        AND date = CURRENT_DATE
-        AND create_time BETWEEN #{start} AND #{end}
-        LIMIT 1;
+          AND date = CURRENT_DATE
+          AND create_time BETWEEN #{start}
+          AND #{end}
+            LIMIT 1;
     </select>
+
+    <insert id="insert" parameterType="com.jiaoery.emos.wx.db.pojo.TbCheckin">
+        INSERT INTO tb_checkin
+        SET user_id = #{userId,jdbcType=INTEGER},
+        <if test="address!=null">
+            address = #{address,jdbcType=VARCHAR},
+        </if>
+        <if test="country!=null">
+            country = #{country,jdbcType=VARCHAR},
+        </if>
+        <if test="province!=null">
+            province = #{province,jdbcType=VARCHAR},
+        </if>
+        <if test="city!=null">
+            city = #{city,jdbcType=VARCHAR},
+        </if>
+        <if test="district!=null">
+            district = #{district,jdbcType=VARCHAR},
+        </if>
+        <if test="status!=null">
+            status = #{status,jdbcType=TINYINT},
+        </if>
+        <if test="risk!=null">
+            risk = #{risk,jdbcType=INTEGER},
+        </if>
+        date=#{date},
+            create_time = #{createTime}
+    </insert>
 
 
 </mapper>

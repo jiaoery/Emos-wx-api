@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiaoery.emos.wx.db.dao.TbFaceModelDao">
+
+    <resultMap id="BaseResultMap" type="com.jiaoery.emos.wx.db.pojo.TbFaceModel">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="faceModel" column="face_model" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,face_model
+    </sql>
+
+    <delete id="deleteFaceModel" parameterType="java.lang.Integer">
+        delete
+        from tb_face_model
+        where user_id = #{userId,INTEGER}
+    </delete>
+    <insert id="insert"  parameterType="com.jiaoery.emos.wx.db.pojo.TbFaceModel"
+            useGeneratedKeys="true">
+        insert into tb_face_model
+        (user_id, face_model)
+        values (#{userId,jdbcType=INTEGER}, #{faceModel,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="searchFaceModel" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM tb_face_model
+        WHERE user_id = #{userId}
+    </select>
+
+</mapper>

@@ -14,4 +14,6 @@ import java.util.HashMap;
 @Mapper
 public interface TbCheckinDao {
     public Integer haveCheckin(HashMap hashMap);
+
+    public void insert(TbCheckin tbCheckin);
 }

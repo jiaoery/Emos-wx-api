@@ -17,13 +17,13 @@
     <delete id="deleteFaceModel" parameterType="java.lang.Integer">
         delete
         from tb_face_model
-        where user_id = #{userId,INTEGER}
+        where user_id = #{userId,jdbcType=INTEGER}
     </delete>
     <insert id="insert"  parameterType="com.jiaoery.emos.wx.db.pojo.TbFaceModel"
             useGeneratedKeys="true">
         insert into tb_face_model
         (user_id, face_model)
-        values (#{userId,jdbcType=INTEGER}, #{faceModel,jdbcType=VARCHAR})
+        values (#{userId,jdbcType=INTEGER},#{faceModel,jdbcType=VARCHAR})
     </insert>
 
     <select id="searchFaceModel" parameterType="java.lang.Integer" resultType="java.lang.String">

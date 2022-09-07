@@ -3,6 +3,8 @@ package com.jiaoery.emos.wx.service;
 import com.jiaoery.emos.wx.config.SystemConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
+
 /**
  * ClassName: CheckinService
  * Description:CheckinService
@@ -13,4 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public interface CheckinService {
     public String validCanChecKin(int userId,String date);
+
+    public void checkin(HashMap param);
 }

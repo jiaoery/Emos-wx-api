@@ -1,6 +1,8 @@
 package com.jiaoery.emos.wx.db.dao;
 
 import com.jiaoery.emos.wx.db.pojo.TbFaceModel;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * @author YCKJ1729
@@ -8,13 +10,13 @@ import com.jiaoery.emos.wx.db.pojo.TbFaceModel;
 * @createDate 2022-09-07 10:40:15
 * @Entity com.jiaoery.emos.wx.db.pojo.TbFaceModel
 */
+@Mapper
 public interface TbFaceModelDao {
 
-    int deleteFaceModel(Integer userId);
+    int deleteFaceModel(@Param("userId")Integer userId);
 
     int insert(TbFaceModel faceModel);
 
-    String searchFaceModel(Integer userId);
+    String searchFaceModel(@Param("userId")Integer userId);
 
 }
- 

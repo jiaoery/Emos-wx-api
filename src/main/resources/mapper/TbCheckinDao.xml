@@ -14,7 +14,7 @@
         <result property="district" column="district" jdbcType="VARCHAR"/>
         <result property="status" column="status" jdbcType="TINYINT"/>
         <result property="risk" column="risk" jdbcType="INTEGER"/>
-        <result property="date" column="date" jdbcType="DATE"/>
+        <result property="date" column="date" jdbcType="VARCHAR"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 

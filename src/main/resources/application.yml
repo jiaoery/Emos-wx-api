@@ -54,6 +54,12 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+#SMTP服务器
+  mail:
+    default-encoding: UTF-8
+    host: smtp.163.com
+    username: 18725683268@163.com
+    password: KNBDUSRLQATCPVWC
 
 # Mybatis
 mybatis:
@@ -82,9 +88,15 @@ emos:
   face:
     createFaceModelUrl: http://196.128.10.45:3000/create_face_model
     checkinUrl: http://192.168.10.45:3000/checkin
+  email:
+    system: 373105324@qq.com
+    hr: 2856194723@qq.com
+    pmp: cqjixiang@gmail.com
 
 wx:
   app-id: wx441d03c90e3678ee
   app-secret: 62ab8f39e88aa1a12adf1d960a4ddaad
+
+
 
 

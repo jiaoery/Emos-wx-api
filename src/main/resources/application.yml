@@ -80,7 +80,7 @@ logging:
 emos:
   jwt:
     #密钥
-    secret: abc123456
+    secret: abc123456-
     #令牌过期时间（天）
     expire:  5
     #令牌缓存时间（天数）
@@ -89,9 +89,10 @@ emos:
     createFaceModelUrl: http://196.128.10.45:3000/create_face_model
     checkinUrl: http://192.168.10.45:3000/checkin
   email:
-    system: 373105324@qq.com
+    system: 18725683268@163.com
     hr: 2856194723@qq.com
     pmp: cqjixiang@gmail.com
+  image-folder: D:/emos/image
 
 wx:
   app-id: wx441d03c90e3678ee

@@ -17,4 +17,6 @@ public interface CheckinService {
     public String validCanChecKin(int userId,String date);
 
     public void checkin(HashMap param);
+
+    public void createFaceModel(int userId,String path);
 }

@@ -10,6 +10,7 @@ import cn.hutool.http.HttpUtil;
 import com.jiaoery.emos.wx.config.SystemConstants;
 import com.jiaoery.emos.wx.db.dao.*;
 import com.jiaoery.emos.wx.db.pojo.TbCheckin;
+import com.jiaoery.emos.wx.db.pojo.TbFaceModel;
 import com.jiaoery.emos.wx.exception.EmosException;
 import com.jiaoery.emos.wx.service.CheckinService;
 import com.jiaoery.emos.wx.task.EmailTask;
@@ -142,6 +143,9 @@ public class CheckinServiceImpl implements CheckinService {
                 int risk = 1;
                 String city = (String) param.get("city");
                 String district = (String) param.get("district");
+                String address = (String) param.get("address");
+                String country = (String) param.get("country");
+                String province = (String) param.get("province");
                 if (!StrUtil.isBlank(city) && !StrUtil.isBlank(district)) {
                     String code = cityDao.searchCode(city);
                     try {
@@ -161,8 +165,7 @@ public class CheckinServiceImpl implements CheckinService {
                                 SimpleMailMessage message = new SimpleMailMessage();
                                 message.setTo(hrEmail);
                                 message.setSubject("员工"+name+"身处高疫情地区警告");
-                                message.setText(deptName+"员工"+name+","+DateUtil.format(new Date(),"yyyy年MM月dd日"));
-
+                                message.setText(deptName+"员工"+name+","+DateUtil.format(new Date(),"yyyy年MM月dd日"+"处于"+address+"属于新冠高风险地区，请及时与该员工联系，核实情况"));
                             } else if ("中风险".equals(result)) {
                                 risk = 2;
                             }
@@ -173,9 +176,6 @@ public class CheckinServiceImpl implements CheckinService {
                     }
                 }
                 // 保存签到记录
-                String address = (String) param.get("address");
-                String country = (String) param.get("country");
-                String province = (String) param.get("province");
                 TbCheckin entity = new TbCheckin();
                 entity.setUserId(userId);
                 entity.setAddress(address);
@@ -187,6 +187,22 @@ public class CheckinServiceImpl implements CheckinService {
                 entity.setDate(DateUtil.today());
                 checkinDao.insert(entity);
             }
+        }
+    }
+
+    @Override
+    public void createFaceModel(int userId, String path) {
+        HttpRequest request = HttpUtil.createPost(createFaceModelUrl);
+        request.form("photo",FileUtil.file(path));
+        HttpResponse response =request.execute();
+        String body = response.body();
+        if("无法识别出人脸".equals(body) || "照片中存在多张人脸".equals(body)){
+            throw new EmosException(body);
+        }else {
+            TbFaceModel entity = new TbFaceModel();
+            entity.setUserId(userId);
+            entity.setFaceModel(body);
+            faceModelDao.insert(entity);
         }
     }
 }

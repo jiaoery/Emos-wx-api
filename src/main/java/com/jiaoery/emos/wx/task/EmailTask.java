@@ -30,6 +30,7 @@ public class EmailTask implements Serializable {
     @Async
     public void sendAsync(SimpleMailMessage message){
         message.setFrom(mailBox);
+        message.setCc(mailBox);
         javaMailSender.send(message);
     }
 }

@@ -61,11 +61,17 @@ public class CheckinServiceImpl implements CheckinService {
     @Autowired
     private TbUserDao userDao;
 
+    @Value("${emos.face.createFaceModelUrl}")
+    private String createFaceModelUrl;
+
     @Value("${emos.face.checkinUrl}")
     private String checkinUrl;
 
     @Value("${emos.email.hr}")
     private String hrEmail;
+
+    @Value("${emos.code}")
+    private String code;
 
     @Autowired
     private EmailTask emailTask;
@@ -128,6 +134,7 @@ public class CheckinServiceImpl implements CheckinService {
             String path = (String) param.get("path");
             HttpRequest httpRequest = HttpUtil.createPost(checkinUrl);
             httpRequest.form("photo", FileUtil.file(path), "targetModel", faceModel);
+            httpRequest.form("code",code);
             HttpResponse httpResponse = httpRequest.execute();
             if (httpResponse.getStatus() != 200) {
                 log.error("人脸识别服务异常");
@@ -192,8 +199,10 @@ public class CheckinServiceImpl implements CheckinService {
 
     @Override
     public void createFaceModel(int userId, String path) {
+        //发送请求
         HttpRequest request = HttpUtil.createPost(createFaceModelUrl);
         request.form("photo",FileUtil.file(path));
+        request.form("code",code);
         HttpResponse response =request.execute();
         String body = response.body();
         if("无法识别出人脸".equals(body) || "照片中存在多张人脸".equals(body)){
